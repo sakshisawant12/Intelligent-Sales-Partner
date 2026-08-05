@@ -1,0 +1,74 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block content %}
+<h2 class="text-xl font-bold mb-4">
+  {{ conversation.email }} — {{ conversation.website.domain }}
+</h2>
+
+<!-- CHAT HISTORY -->
+<div id="chatBox" class="bg-gray-900 p-4 rounded h-[400px] overflow-y-auto">
+  {% for msg in conversation.messages.all %}
+    <div class="mb-2">
+      <strong>{{ msg.sender }}:</strong> {{ msg.text }}
+    </div>
+  {% empty %}
+    <p class="text-gray-400">No messages yet.</p>
+  {% endfor %}
+</div>
+
+<!-- OWNER REPLY (NO FORM, NO POST) -->
+<div class="mt-4 flex gap-2">
+  <input
+    id="ownerMessage"
+    placeholder="Type reply..."
+    class="flex-1 p-3 rounded bg-gray-900 text-white"
+  >
+  <button
+    onclick="sendOwnerMessage()"
+    class="bg-orange-500 px-4 rounded"
+  >
+    Send
+  </button>
+</div>
+
+<!-- REAL-TIME SOCKET -->
+<script>
+const widgetId = "{{ conversation.website.widget_id }}";
+const email = "{{ conversation.email }}";
+
+// ✅ SAVE SOCKET PROPERLY
+const socket = new WebSocket(
+  `ws://127.0.0.1:8000/ws/chat/${widgetId}/${email}/owner/`
+);
+
+socket.onmessage = function(e) {
+  const data = JSON.parse(e.data);
+  const box = document.getElementById("chatBox");
+
+  const role = data.sender === "user" ? "user" : "owner";
+
+  box.innerHTML += `
+    <div class="mb-2">
+      <strong>${role}:</strong> ${data.message}
+    </div>
+  `;
+
+  box.scrollTop = box.scrollHeight;
+};
+
+function sendOwnerMessage() {
+  const input = document.getElementById("ownerMessage");
+  const message = input.value.trim();
+
+  if (!message) return;
+
+  socket.send(JSON.stringify({
+    message: message
+  }));
+
+  input.value = "";
+}
+</script>
+
+
+{% endblock %}

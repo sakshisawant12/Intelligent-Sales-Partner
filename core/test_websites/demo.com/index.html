@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LAVÉ | Contemporary Clothing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="LAVÉ is a contemporary clothing brand offering premium overshirts, tailored pants and modern everyday fashion essentials.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        lavender: '#a78bfa',
+        lavenderSoft: '#f3f0ff',
+        lavenderDark: '#6d28d9',
+        ink: '#1e1b4b',
+        muted: '#6b7280'
+      }
+    }
+  }
+}
+</script>
+</head>
+
+<body class="bg-lavenderSoft text-ink font-sans tracking-wide">
+
+<!-- ================= HEADER ================= -->
+<header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+    <h1 class="text-3xl font-extrabold text-lavenderDark tracking-widest">LAVÉ</h1>
+    <nav class="space-x-10 hidden md:block font-medium">
+      <a href="#" class="hover:text-lavenderDark transition">Shop</a>
+      <a href="#" class="hover:text-lavenderDark transition">About</a>
+      <a href="#" class="hover:text-lavenderDark transition">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="relative py-32 px-6 bg-gradient-to-br from-lavenderSoft via-white to-lavenderSoft">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-5xl md:text-6xl font-extrabold text-lavenderDark leading-tight">
+      Modern Minimal Clothing
+    </h2>
+
+    <p class="mt-8 text-lg max-w-2xl mx-auto text-muted">
+      LAVÉ is a contemporary clothing brand focused on premium fabrics,
+      timeless silhouettes and everyday elegance.
+    </p>
+
+    <button class="mt-10 bg-lavenderDark text-white px-10 py-4 rounded-full shadow-xl hover:scale-105 transition">
+      Explore Collection
+    </button>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="py-24 px-6 bg-white">
+  <div class="max-w-4xl mx-auto text-center">
+    <h3 class="text-4xl font-bold text-lavenderDark">About LAVÉ</h3>
+
+    <p class="mt-6 text-lg leading-relaxed text-muted">
+      LAVÉ is a contemporary clothing brand specializing in premium overshirts,
+      tailored pants and minimalist fashion essentials.
+      Our pieces are crafted for breathable comfort and modern confidence.
+      Our clothing price range starts from ₹1,200 and goes up to ₹3,000.
+    </p>
+  </div>
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+<section class="py-28 px-6">
+  <div class="max-w-7xl mx-auto">
+    <h3 class="text-4xl font-bold text-center text-lavenderDark mb-16">
+      Featured Collection
+    </h3>
+
+    <div class="grid md:grid-cols-2 gap-16">
+
+      <!-- PRODUCT 1 -->
+      <div class="bg-white rounded-3xl shadow-lg p-8 hover:shadow-2xl transition"
+           data-isp-product
+           data-name="Lavender Overshirt"
+           data-price="1499"
+           data-category="Clothing"
+           data-description="Lightweight lavender overshirt designed for layering and everyday styling.">
+
+        <div class="h-64 bg-lavenderSoft rounded-2xl mb-6"></div>
+
+        <span class="text-xs bg-lavender text-white px-3 py-1 rounded-full">
+          Bestseller
+        </span>
+
+        <h4 class="text-2xl font-bold mt-4">Lavender Overshirt</h4>
+
+        <p class="mt-3 text-muted">
+          Lightweight, relaxed and tailored for effortless layering.
+          Crafted from breathable fabric for daily comfort.
+        </p>
+
+        <div class="mt-5 flex justify-between items-center">
+          <p class="text-xl font-semibold text-lavenderDark">₹1,499</p>
+          <button class="bg-lavenderDark text-white px-6 py-2 rounded-full">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUCT 2 -->
+      <div class="bg-white rounded-3xl shadow-lg p-8 hover:shadow-2xl transition"
+           data-isp-product
+           data-name="Soft Tailored Pants"
+           data-price="1299"
+           data-category="Clothing"
+           data-description="Modern tailored pants offering all-day comfort with minimal silhouette.">
+
+        <div class="h-64 bg-lavenderSoft rounded-2xl mb-6"></div>
+
+        <span class="text-xs bg-lavender text-white px-3 py-1 rounded-full">
+          New Arrival
+        </span>
+
+        <h4 class="text-2xl font-bold mt-4">Soft Tailored Pants</h4>
+
+        <p class="mt-3 text-muted">
+          Modern fit with stretch comfort.
+          Designed for both workwear and relaxed styling.
+        </p>
+
+        <div class="mt-5 flex justify-between items-center">
+          <p class="text-xl font-semibold text-lavenderDark">₹1,299</p>
+          <button class="bg-lavenderDark text-white px-6 py-2 rounded-full">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= NEWSLETTER (FIXED) ================= -->
+<section class="py-28 px-6 bg-gradient-to-r from-lavenderDark to-lavender">
+  <div class="max-w-4xl mx-auto bg-white rounded-[3rem] p-16 text-center shadow-2xl">
+
+    <h3 class="text-3xl font-bold text-lavenderDark">
+      Stay in Style
+    </h3>
+
+    <p class="mt-4 text-muted">
+      Subscribe to get updates on new collections and exclusive drops.
+    </p>
+
+    <!-- ✅ FIXED FORM -->
+    <form data-isp-form>
+      <input type="email"
+             name="email"
+             data-isp-lead
+             placeholder="Your email"
+             required
+             class="border px-6 py-4 rounded-full w-full mt-6 focus:ring-2 focus:ring-lavender">
+
+      <button type="submit"
+              class="mt-6 bg-lavenderDark text-white px-8 py-3 rounded-full">
+        Subscribe
+      </button>
+    </form>
+
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-white py-12 text-center text-sm text-muted">
+  © 2026 LAVÉ. Contemporary Clothing Brand.
+</footer>
+
+<!-- ✅ FIXED WIDGET -->
+<script
+    src="http://127.0.0.1:8000/static/widget.js"
+    data-widget-id="2de55fa6-3d28-4902-aeb0-8b9e1db4db5b"
+    data-api-url="http://127.0.0.1:8000">
+</script>
+
+<script>
+window.ISP_PRODUCTS = [
+  {
+    name: "Lavender Overshirt",
+    price: "1499",
+    category: "Clothing",
+    keywords: ["shirt", "overshirt", "lavender shirt", "top"],
+    tags: ["trending", "bestseller"],
+    description: "Lightweight lavender overshirt designed for layering and everyday styling."
+  },
+  {
+    name: "Soft Tailored Pants",
+    price: "1299",
+    category: "Clothing",
+    keywords: ["pants", "trousers", "bottom wear"],
+    tags: ["new arrival"],
+    description: "Modern tailored pants offering all-day comfort with minimal silhouette."
+  }
+];
+</script>
+
+</body>
+</html>

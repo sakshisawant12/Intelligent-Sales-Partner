@@ -1,0 +1,44 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}Domains | ISP{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">Registered Websites</h1>
+
+<div class="bg-[#111827] p-6 rounded-xl">
+    <p class="text-gray-400 mb-4">
+        These websites are connected with Intelligent Sales Partner.
+    </p>
+
+    <table class="w-full text-left">
+        <thead class="text-gray-400">
+            <tr>
+                <th class="py-2">Domain</th>
+                <th>Status</th>
+                <th>Created</th>
+            </tr>
+        </thead>
+       <tbody>
+    {% for website in websites %}
+    <tr class="border-t border-gray-800 hover:bg-gray-900 cursor-pointer">
+        <td class="py-3 text-blue-400">
+           <a href="{% url 'domains:website_code' website.widget_id %}">
+
+                {{ website.domain }}
+            </a>
+        </td>
+        <td class="text-green-400">Active</td>
+        <td>{{ website.created_at|date:"d M Y" }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3" class="py-4 text-gray-400 text-center">
+            No websites added yet.
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+
+    </table>
+</div>
+{% endblock %}

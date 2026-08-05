@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}Home | Intelligent Sales Partner{% endblock %}
+{% load static %}
+
+{% block content %}
+
+<!-- ================= HERO (STABLE BG, TEXT SHIFTED LEFT) ================= -->
+<section
+    class="relative bg-cover bg-center min-h-[100vh]"
+    style="background-image: url('{% static 'images/bg-ai.jpg' %}');">
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-slate-900/80"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 px-10 pt-32 pb-16">
+        <div class="max-w-7xl mx-auto">
+            <div class="md:w-[42%]">
+
+                <span class="inline-block bg-slate-800 px-4 py-1 rounded-full text-sm mb-4">
+                    🚀 AI Sales Automation Platform
+                </span>
+
+                <h1 class="text-6xl font-extrabold leading-tight">
+                    AI That <br>
+                    <span class="text-orange-500">Sells For You</span>
+                </h1>
+
+                <p class="text-slate-300 mt-6 max-w-xl text-lg leading-relaxed">
+                    Intelligent Sales Partner helps businesses handle customer
+                    queries, capture contact details, and manage basic follow-ups
+                    automatically. It works 24/7 to reduce manual effort and
+                    improve response time — even when your team is offline.
+                </p>
+
+                <a href="/contact/"
+                   class="inline-block mt-8 bg-orange-500 px-8 py-4 rounded-xl
+                          text-lg font-semibold hover:bg-orange-600
+                          transition-all shadow-xl">
+                    Get Personalized AI 🚀
+                </a>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= SECTION 2 ================= -->
+<section class="px-10 py-28 bg-slate-950">
+
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+
+        <!-- IMAGE -->
+        <div class="flex justify-center">
+            <img src="{% static 'images/hero.png.png' %}"
+                 alt="AI Assistant Illustration"
+                 class="w-[720px] max-h-[300px] object-contain rounded-2xl shadow-2xl">
+        </div>
+
+        <!-- TEXT -->
+        <div>
+            <h2 class="text-4xl font-bold">
+                Smart AI for Customer Assistance
+            </h2>
+
+            <p class="text-slate-300 mt-6 leading-relaxed">
+                ISP provides an AI-powered chatbot that can answer common
+                questions, guide users across your website, and collect leads
+                through simple conversations. It helps businesses respond faster
+                without constant human involvement.
+            </p>
+
+            <ul class="mt-6 space-y-3 text-slate-400">
+                <li>✔ Handles basic customer questions</li>
+                <li>✔ Collects emails and contact details</li>
+                <li>✔ Supports lead management workflows</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="px-10 py-28 bg-gradient-to-r from-slate-900 to-slate-800 text-center">
+
+    <h2 class="text-5xl font-extrabold">
+        Ready to <span class="text-orange-500">Automate Sales?</span>
+    </h2>
+
+    <p class="text-slate-300 mt-6 max-w-2xl mx-auto text-lg">
+        Install ISP once and let AI assist with customer queries,
+        lead collection, and follow-ups — all in one dashboard.
+    </p>
+
+    <a href="/contact/"
+       class="inline-block mt-10 bg-orange-500 px-10 py-4 rounded-xl
+              text-lg font-semibold hover:bg-orange-600
+              transition-all shadow-xl">
+        Start Now 🚀
+    </a>
+
+</section>
+
+{% endblock %}

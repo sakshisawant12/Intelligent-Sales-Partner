@@ -1,0 +1,421 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ISP Chat</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Inter, Arial, sans-serif;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    #chatLauncher {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #f97316, #fb923c);
+      border-radius: 50%;
+      color: white;
+      font-size: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    }
+
+    #chatWindow {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 360px;
+      height: 520px;
+      background: #020617;
+      border-radius: 16px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .header {
+      background: linear-gradient(135deg, #f97316, #fb923c);
+      padding: 14px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+    }
+
+    .chat {
+      flex: 1;
+      padding: 14px;
+      overflow-y: auto;
+      background: #020617;
+    }
+
+    .msg {
+      max-width: 80%;
+      margin-bottom: 10px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 14px;
+    }
+
+    .bot {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-top-left-radius: 4px;
+    }
+
+    .user {
+      background: #f97316;
+      color: white;
+      margin-left: auto;
+      border-top-right-radius: 4px;
+    }
+
+    .input {
+      display: flex;
+      border-top: 1px solid #1f2937;
+    }
+
+    .input input {
+      flex: 1;
+      padding: 12px;
+      background: transparent;
+      border: none;
+      color: white;
+      outline: none;
+    }
+
+    .input button {
+      padding: 0 18px;
+      background: #f97316;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #emailPopup {
+      position: absolute;
+      inset: 0;
+      background: rgba(2,6,23,0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .email-box {
+      background: #020617;
+      padding: 20px;
+      width: 280px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid #1f2937;
+    }
+
+    .email-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 12px 0;
+      background: #020617;
+      border: 1px solid #334155;
+      color: white;
+      border-radius: 8px;
+    }
+
+    .email-box button {
+      width: 100%;
+      padding: 10px;
+      background: #f97316;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #humanModeBox {
+      display: none;
+      padding: 10px;
+      background: #78350f;
+      color: #fde68a;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    #humanModeBox button {
+      margin-top: 8px;
+      width: 100%;
+      background: #facc15;
+      border: none;
+      padding: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #chatLauncher {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 65px;
+      height: 65px;
+      background: transparent;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    #chatLauncher img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+      transition: 0.2s ease;
+    }
+
+    #chatLauncher img:hover {
+      transform: scale(1.08);
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div id="chatLauncher" onclick="openChat()">
+  <img src="{% static 'images/bot.jpg' %}" alt="Chat Bot">
+</div>
+
+<div id="chatWindow">
+  <div class="header">
+    Intelligent Sales Partner
+    <span style="cursor:pointer" onclick="closeChat()">✕</span>
+  </div>
+
+  <div id="emailPopup">
+    <div class="email-box">
+      <h3>📧 Your Email</h3>
+      <input id="emailInput" placeholder="you@example.com">
+      <button onclick="submitEmail()">Continue</button>
+    </div>
+  </div>
+
+  <div class="chat" id="chatBox">
+    <div class="msg bot">👋 Hi! How can I help you today?</div>
+  </div>
+
+  <div id="humanModeBox">
+    Want to talk to the website owner?
+    <button id="requestHumanBtn">Talk to Owner</button>
+  </div>
+
+  <div class="input">
+    <input id="msgInput" placeholder="Type a message...">
+    <button onclick="sendMsg()">Send</button>
+  </div>
+</div>
+
+<script>
+/* ================== STATE ================== */
+const WIDGET_ID = new URLSearchParams(window.location.search).get("widget_id");
+let emailCollected = sessionStorage.getItem("isp_email_collected") === "true";
+let userEmail = null;                 // 🔴 ADDED
+let humanSocket = null;
+let isHumanMode = false;               // 🔴 ADDED
+
+/* ================== ELEMENTS ================== */
+const chatBox = document.getElementById("chatBox");
+const msgInput = document.getElementById("msgInput");
+const emailPopup = document.getElementById("emailPopup");
+const emailInput = document.getElementById("emailInput");
+const humanModeBox = document.getElementById("humanModeBox");
+const requestHumanBtn = document.getElementById("requestHumanBtn");
+
+/* ================== LAUNCHER ================== */
+function openChat() {
+  document.getElementById("chatWindow").style.display = "flex";
+  document.getElementById("chatLauncher").style.display = "none";
+}
+
+function closeChat() {
+  document.getElementById("chatWindow").style.display = "none";
+  document.getElementById("chatLauncher").style.display = "flex";
+}
+
+/* ================== EMAIL ================== */
+function submitEmail() {
+  const email = emailInput.value.trim();
+  if (!email) return;
+
+  userEmail = email;                  // 🔴 ADDED
+
+  fetch("http://127.0.0.1:8000/chat/api/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      message: email,
+      widget_id: WIDGET_ID,
+      origin: window.location.origin,
+      products: getISPProducts()
+    })
+  });
+
+  sessionStorage.setItem("isp_email_collected", "true");
+  emailCollected = true;
+  emailPopup.style.display = "none";
+}
+
+/* ================== WEBSOCKET (HUMAN MODE) ================== */
+function connectHumanSocket() {
+  if (humanSocket || !userEmail) return;
+
+  const safeEmail = encodeURIComponent(userEmail); // ✅ FIX
+
+  humanSocket = new WebSocket(
+    `ws://127.0.0.1:8000/ws/chat/${WIDGET_ID}/${safeEmail}/user/`
+  );
+
+  humanSocket.onmessage = function (e) {
+    const data = JSON.parse(e.data);
+
+    if (data.sender === "user") return;
+
+    chatBox.innerHTML += `
+      <div class="msg bot">
+        ${data.message}
+      </div>
+    `;
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+  };
+
+
+  humanSocket.onerror = function () {
+    console.error("Human WebSocket error");
+  };
+}
+
+
+/* ================== HUMAN KEYWORDS ================== */
+function checkForHumanRequest(message) {
+  const keywords = [
+    "manager",
+    "owner",
+    "human",
+    "real person",
+    "talk to person",
+    "talk to owner"
+  ];
+  return keywords.some(k => message.toLowerCase().includes(k));
+}
+/* ================== EXTRACT WEBSITE PRODUCTS ================== */
+function getISPProducts() {
+  const products = [];
+
+  try {
+    if (window.parent && window.parent.document) {
+      window.parent.document.querySelectorAll("[data-isp-product]").forEach(el => {
+        products.push({
+          name: el.dataset.name,
+          price: el.dataset.price,
+          category: el.dataset.category,
+          description: el.dataset.description || ""
+        });
+      });
+    }
+  } catch (e) {
+    console.log("Product extraction blocked:", e);
+  }
+
+  return products;
+}
+
+/* ================== SEND MESSAGE ================== */
+function sendMsg() {
+  if (!emailCollected) return;
+
+  const msg = msgInput.value.trim();
+  if (!msg) return;
+
+  chatBox.innerHTML += `<div class="msg user">${msg}</div>`;
+  msgInput.value = "";
+
+  /* 🔴 HUMAN MODE */
+  if (checkForHumanRequest(msg)) {
+    connectHumanSocket(); 
+    isHumanMode = true;             // 🔴 ADDED
+    humanModeBox.style.display = "block";
+    return;
+  }
+  /* 🔴 HUMAN MODE ACTIVE → NO AI */
+  if (isHumanMode && humanSocket) {
+   humanSocket.send(JSON.stringify({
+    message: msg,
+    
+   }));
+   return;
+}
+
+
+  fetch("http://127.0.0.1:8000/chat/api/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      message: msg,
+      widget_id: WIDGET_ID,
+      origin: window.location.origin,
+      products: getISPProducts()
+    })
+  })
+  .then(r => r.json())
+  .then(d => {
+    if (d.reply) {
+      chatBox.innerHTML += `<div class="msg bot">${d.reply}</div>`;
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  });
+}
+
+/* ================== REQUEST HUMAN ================== */
+requestHumanBtn.onclick = () => {
+  connectHumanSocket();                // 🔴 ADDED
+
+  fetch("http://127.0.0.1:8000/chat/api/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      message: "__HUMAN_REQUEST__",
+      widget_id: WIDGET_ID,
+      origin: window.location.origin
+    })
+  });
+
+  chatBox.innerHTML += `
+    <div class="msg bot">
+      📨 The website owner has been notified. Please wait.
+    </div>
+  `;
+
+  humanModeBox.style.display = "none";
+};
+
+/* ================== ENTER KEY ================== */
+msgInput.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") sendMsg();
+});
+</script>
+
+
+</body>
+</html>

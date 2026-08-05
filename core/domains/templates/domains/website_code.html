@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Embed Chatbot | ISP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#0b1220] text-gray-200 min-h-screen flex items-center justify-center px-4">
+
+    <div class="max-w-3xl w-full bg-[#0f172a] border border-gray-800 rounded-xl shadow-lg p-8">
+
+        <!-- HEADER -->
+        <div class="mb-6">
+            <h1 class="text-3xl font-bold text-white mb-2">
+                Embed Chatbot on Your Website
+            </h1>
+            <p class="text-gray-400">
+                Copy the code below and paste it just before the
+                <span class="text-orange-400">&lt;/body&gt;</span> tag of your website.
+            </p>
+        </div>
+
+        <!-- INFO BOX -->
+        <div class="bg-[#020617] border border-gray-700 rounded-lg p-4 mb-6 text-sm">
+            <div class="flex justify-between mb-2">
+                <span class="text-gray-400">Website</span>
+                <span class="text-white font-medium">{{ website.domain }}</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-gray-400">Widget ID</span>
+                <span class="text-orange-400 font-mono text-xs">
+                    {{ website.id }}
+                </span>
+            </div>
+        </div>
+
+        <!-- CODE BLOCK -->
+        <div class="relative">
+            <textarea
+                id="embedCode"
+                readonly
+                class="w-full h-40 p-4 bg-black border border-gray-700 rounded-lg text-sm font-mono text-green-400 resize-none focus:outline-none"
+            >
+<!-- ISP Chatbot Widget -->
+<script
+    src="http://127.0.0.1:8000/static/widget.js"
+    data-widget-id="{{ website.widget_id }}">
+</script>
+            </textarea>
+
+            <!-- COPY BUTTON -->
+            <button
+                onclick="copyCode()"
+                class="absolute top-3 right-3 bg-orange-500 hover:bg-orange-600 text-black text-sm font-semibold px-4 py-1.5 rounded-md transition"
+            >
+                Copy
+            </button>
+        </div>
+
+        <!-- FOOTER NOTE -->
+        <p class="text-gray-500 text-sm mt-4">
+            Once added, the Intelligent Sales Partner chatbot will appear automatically on your website.
+        </p>
+
+    </div>
+
+    <script>
+        function copyCode() {
+            const textarea = document.getElementById("embedCode");
+            textarea.select();
+            textarea.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+        }
+    </script>
+
+</body>
+</html>

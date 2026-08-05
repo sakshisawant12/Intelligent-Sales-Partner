@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}About | Intelligent Sales Partner{% endblock %}
+
+{% block content %}
+
+<section class="px-10 py-16 min-h-screen">
+
+    <div class="max-w-6xl mx-auto">
+
+        <!-- ================= PAGE TITLE ================= -->
+        <div class="text-center mb-16">
+            <h1 class="text-4xl font-extrabold">
+                About <span class="text-orange-500">Intelligent Sales Partner</span>
+            </h1>
+            <p class="text-slate-300 mt-4 max-w-2xl mx-auto text-lg">
+                AI-powered sales automation platform designed to help businesses convert visitors into customers efficiently.
+            </p>
+        </div>
+
+
+        <!-- ================= FOUNDER ================= -->
+        <div class="grid md:grid-cols-2 gap-10 items-center mb-20">
+
+            <!-- PHOTO -->
+            <div class="flex justify-center">
+                <img src="{% static 'images/founder.jpeg' %}"
+                     alt="Founder Photo"
+                     class="w-64 rounded-xl shadow-xl border border-slate-700">
+            </div>
+
+            <!-- TEXT -->
+            <div>
+                <h2 class="text-2xl font-bold mb-4">
+                    Founder
+                </h2>
+
+                <p class="text-slate-300 leading-relaxed mb-3 text-base">
+                    Hi, I'm <strong>Soham Jadhav</strong>, a BSc IT student passionate about Artificial Intelligence and automation.
+                </p>
+
+                <p class="text-slate-300 leading-relaxed mb-3 text-base">
+                    I built Intelligent Sales Partner (ISP) to help businesses automate customer conversations,
+                    capture leads, and improve response time using intelligent systems.
+                </p>
+
+                <p class="text-slate-400 text-base">
+                    What started as a college project is evolving into a production-ready SaaS platform.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- ================= MISSION ================= -->
+        <div class="mb-20">
+            <div class="bg-slate-800 rounded-xl p-8 shadow-lg border border-slate-700 text-center">
+
+                <h2 class="text-2xl font-bold mb-4">
+                    Mission
+                </h2>
+
+                <p class="text-slate-300 text-base leading-relaxed max-w-3xl mx-auto">
+                    To help businesses automate sales communication, reduce manual workload,
+                    and improve customer response time through reliable and scalable AI-powered systems.
+                </p>
+
+            </div>
+        </div>
+
+
+        <!-- ================= VISION ================= -->
+        <div class="mb-20">
+            <div class="bg-slate-800 rounded-xl p-8 shadow-lg border border-slate-700 text-center">
+
+                <h2 class="text-2xl font-bold mb-4">
+                    Vision
+                </h2>
+
+                <p class="text-slate-300 text-base leading-relaxed max-w-3xl mx-auto">
+                    To build intelligent automation solutions that empower businesses worldwide
+                    to operate smarter, faster, and more efficiently using advanced AI technology.
+                </p>
+
+            </div>
+        </div>
+
+
+        <!-- ================= TECH STACK ================= -->
+        <div>
+
+            <h2 class="text-2xl font-bold mb-8 text-center">
+                Tech Stack
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+
+                <div class="bg-slate-800 p-6 rounded-xl shadow border border-slate-700">
+                    <h3 class="text-lg font-semibold text-orange-400 mb-2">Django</h3>
+                    <p class="text-slate-300 text-sm">
+                        Backend framework managing authentication, business logic,
+                        and database communication.
+                    </p>
+                </div>
+
+                <div class="bg-slate-800 p-6 rounded-xl shadow border border-slate-700">
+                    <h3 class="text-lg font-semibold text-orange-400 mb-2">Tailwind CSS</h3>
+                    <p class="text-slate-300 text-sm">
+                        Used to build a responsive and modern user interface.
+                    </p>
+                </div>
+
+                <div class="bg-slate-800 p-6 rounded-xl shadow border border-slate-700">
+                    <h3 class="text-lg font-semibold text-orange-400 mb-2">Groq API (LLaMA)</h3>
+                    <p class="text-slate-300 text-sm">
+                        Powers AI chatbot conversations and automated responses.
+                    </p>
+                </div>
+
+                <div class="bg-slate-800 p-6 rounded-xl shadow border border-slate-700">
+                    <h3 class="text-lg font-semibold text-orange-400 mb-2">SQLite</h3>
+                    <p class="text-slate-300 text-sm">
+                        Stores users, leads, domains, and conversation data.
+                    </p>
+                </div>
+
+                <div class="bg-slate-800 p-6 rounded-xl shadow border border-slate-700">
+                    <h3 class="text-lg font-semibold text-orange-400 mb-2">Gmail SMTP</h3>
+                    <p class="text-slate-300 text-sm">
+                        Sends automated notifications and marketing emails.
+                    </p>
+                </div>
+
+                <div class="bg-slate-800 p-6 rounded-xl shadow border border-slate-700">
+                    <h3 class="text-lg font-semibold text-orange-400 mb-2">Real-Time Dashboard</h3>
+                    <p class="text-slate-300 text-sm">
+                        Allows monitoring of leads, conversations, and system activity.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

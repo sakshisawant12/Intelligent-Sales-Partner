@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ISP Chat</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+    .chat {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .messages {
+      flex: 1;
+      padding: 12px;
+      overflow-y: auto;
+    }
+    .input-box {
+      display: flex;
+      border-top: 1px solid #1e293b;
+    }
+    input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      outline: none;
+      background: #020617;
+      color: white;
+    }
+    button {
+      padding: 10px 16px;
+      background: #22c55e;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="chat">
+    <div class="messages">
+      <p><b>ISP Bot:</b> Hello 👋 How can I help?</p>
+    </div>
+
+    <div class="input-box">
+      <input placeholder="Type your message..." />
+      <button>Send</button>
+    </div>
+  </div>
+</body>
+</html>

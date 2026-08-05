@@ -1,0 +1,11 @@
+<h1>Your Registered Websites</h1>
+
+{% if websites %}
+    <ul>
+        {% for site in websites %}
+            <li>{{ site.domain }} ({{ site.created_at }})</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No websites registered yet.</p>
+{% endif %}

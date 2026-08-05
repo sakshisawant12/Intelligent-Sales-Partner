@@ -1,0 +1,113 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}Dashboard | ISP{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">Dashboard Overview</h1>
+
+<!-- ===== TOP STATS ===== -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <!-- Customers -->
+    <div class="bg-[#111827] p-6 rounded-xl">
+        <h2 class="text-xl font-semibold mb-2">Customers</h2>
+        <p class="text-gray-400">Total customers using your chatbot</p>
+        <p class="text-4xl font-bold mt-4">
+            {{ total_conversations }}
+        </p>
+    </div>
+
+    <!-- Sales Conversations -->
+    <div class="bg-[#111827] p-6 rounded-xl">
+        <h2 class="text-xl font-semibold mb-2">Sales Conversations</h2>
+        <p class="text-gray-400">AI + Human assisted chats</p>
+        <p class="text-4xl font-bold mt-4">
+            {{ total_conversations }}
+        </p>
+    </div>
+
+</div>
+
+<!-- ===== PERFORMANCE SUMMARY (IMAGE 2) ===== -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
+
+    <!-- Avg Response Time -->
+    <div class="bg-[#111827] p-6 rounded-xl">
+        <p class="text-gray-400 text-sm">Avg Response Time</p>
+        <p class="text-3xl font-bold mt-2">
+            {{ avg_response_time }} sec
+        </p>
+    </div>
+
+    <!-- First Response Rate -->
+    <div class="bg-[#111827] p-6 rounded-xl">
+        <p class="text-gray-400 text-sm">First Response Rate</p>
+        <p class="text-3xl font-bold mt-2">
+            {{ first_response_rate }}%
+        </p>
+    </div>
+
+    <!-- Conversation Quality -->
+    <div class="bg-[#111827] p-6 rounded-xl">
+        <p class="text-gray-400 text-sm">Conversation Quality</p>
+        <p class="text-3xl font-bold mt-2">
+            {{ conversation_quality }}/10
+        </p>
+    </div>
+
+    <!-- Lead Engagement -->
+    <div class="bg-[#111827] p-6 rounded-xl">
+        <p class="text-gray-400 text-sm">Lead Engagement</p>
+        <p class="text-3xl font-bold mt-2">
+            {{ lead_engagement }}%
+        </p>
+    </div>
+
+</div>
+
+<!-- ===== WEEKLY CONVERSATIONS (IMAGE 3) ===== -->
+<div class="bg-[#111827] p-6 rounded-xl mt-8">
+    <h2 class="text-xl font-semibold mb-4">Conversations This Week</h2>
+
+    <div id="weeklyChart"
+         class="flex items-end gap-4 h-48">
+    </div>
+</div>
+
+<script>
+    const weeklyData = {{ weekly_chart_data|safe }};
+
+    const chartContainer = document.getElementById("weeklyChart");
+
+    const maxValue = Math.max(...Object.values(weeklyData), 1);
+
+    Object.entries(weeklyData).forEach(([date, count]) => {
+        const barWrapper = document.createElement("div");
+        barWrapper.className = "flex flex-col items-center gap-2 w-10";
+
+        const bar = document.createElement("div");
+        bar.className = "bg-orange-500 w-full rounded-t";
+        bar.style.height = `${(count / maxValue) * 100}%`;
+
+        const label = document.createElement("span");
+        label.className = "text-xs text-gray-400";
+        label.innerText = date.slice(5); // MM-DD
+
+        const value = document.createElement("span");
+        value.className = "text-xs font-semibold";
+        value.innerText = count;
+
+        barWrapper.appendChild(bar);
+        barWrapper.appendChild(value);
+        barWrapper.appendChild(label);
+
+        chartContainer.appendChild(barWrapper);
+    });
+</script>
+<!-- Debug / data check (remove later if you want) -->
+    <pre class="text-xs text-gray-500 bg-[#020617] p-4 rounded overflow-x-auto">
+{{ weekly_chart_data }}
+    </pre>
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}Conversations | ISP{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">Customer Conversations</h1>
+
+<div class="bg-[#111827] rounded-xl divide-y divide-gray-800">
+
+  {% for convo in conversations %}
+    <a href="{% url 'dashboard:conversation_detail' convo.id %}"
+       class="block p-4 hover:bg-gray-900 transition">
+
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="font-semibold text-white">
+            {{ convo.email }}
+          </p>
+
+          <p class="text-gray-400 text-sm">
+            {{ convo.messages.last.text|default:"No messages yet" }}
+          </p>
+
+          <p class="text-xs text-gray-500 mt-1">
+            {{ convo.website.domain }}
+          </p>
+        </div>
+
+        {% if convo.messages.last.sender == "bot" %}
+          <span class="px-2 py-1 text-xs bg-blue-600 rounded">AI</span>
+        {% else %}
+          <span class="px-2 py-1 text-xs bg-yellow-500 text-black rounded">
+            HUMAN
+          </span>
+        {% endif %}
+      </div>
+
+    </a>
+  {% empty %}
+    <div class="p-6 text-gray-400 text-center">
+      No conversations yet
+    </div>
+  {% endfor %}
+
+</div>
+{% endblock %}

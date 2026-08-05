@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BooksCorner | Online Book Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="DemoBooks is an online bookstore offering self-help, business, productivity and personal growth books at affordable prices.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                beige: '#f5efe6',
+                brown: '#6b4f3f',
+                lightbrown: '#a47148',
+                card: '#fffaf3'
+            }
+        }
+    }
+}
+</script>
+</head>
+
+<body class="bg-beige text-brown">
+
+<!-- HEADER -->
+<header class="bg-card shadow sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+<h1 class="text-3xl font-bold tracking-wide">BooksCorner</h1>
+
+<nav class="space-x-8 hidden md:block">
+<a href="#" class="hover:text-lightbrown">Home</a>
+<a href="#" class="hover:text-lightbrown">Books</a>
+<a href="#" class="hover:text-lightbrown">Categories</a>
+<a href="#" class="hover:text-lightbrown">Contact</a>
+</nav>
+
+<button class="bg-brown text-white px-5 py-2 rounded-lg hover:scale-105 transition">
+Sign In
+</button>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="py-28 px-6">
+<div class="max-w-6xl mx-auto text-center">
+
+<h2 class="text-5xl font-extrabold">
+A Cozy Place for <span class="text-lightbrown">Book Lovers</span>
+</h2>
+
+<p class="mt-8 text-lg max-w-2xl mx-auto">
+DemoBooks is an online bookstore offering hand-picked books across productivity,
+business, technology, self-help, and personal development.
+</p>
+
+<button class="mt-10 bg-brown text-white px-10 py-4 rounded-full shadow hover:scale-105 transition">
+Explore Collection
+</button>
+
+</div>
+</section>
+
+<!-- ABOUT SECTION FOR AI CONTEXT -->
+<section class="py-20 bg-[#efe6da] px-6" data-isp-section="about">
+<div class="max-w-4xl mx-auto text-center">
+
+<h3 class="text-3xl font-bold">About DemoBooks</h3>
+
+<p class="mt-6 text-lg leading-relaxed">
+DemoBooks is a curated online bookstore focused on self-improvement,
+deep work, financial wisdom, and mindset growth.
+Our book prices range from ₹299 to ₹450.
+</p>
+
+</div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="py-24 px-6">
+<div class="max-w-7xl mx-auto">
+
+<h3 class="text-4xl font-bold text-center mb-14">Featured Books</h3>
+
+<div class="grid md:grid-cols-4 gap-10">
+
+<!-- Atomic Habits -->
+<div class="bg-card p-6 rounded-xl shadow"
+     data-isp-product
+     data-name="Atomic Habits"
+     data-price="399"
+     data-category="Books"
+     data-description="A practical guide to building good habits and breaking bad ones."
+     data-keywords="habits, productivity, self-help"
+     data-tags="bestseller,trending">
+
+<div class="h-44 bg-[#e2d3c1] rounded-lg mb-4"></div>
+<h4 class="font-semibold text-lg">Atomic Habits</h4>
+<p class="text-sm">James Clear</p>
+<p class="mt-2 font-bold text-lightbrown">₹399</p>
+<button class="mt-4 w-full bg-brown text-white py-2 rounded-lg">Buy Now</button>
+</div>
+
+<!-- Deep Work -->
+<div class="bg-card p-6 rounded-xl shadow"
+     data-isp-product
+     data-name="Deep Work"
+     data-price="349"
+     data-category="Books"
+     data-description="Rules for focused success in a distracted world."
+     data-keywords="focus, productivity, work"
+     data-tags="popular">
+
+<div class="h-44 bg-[#e2d3c1] rounded-lg mb-4"></div>
+<h4 class="font-semibold text-lg">Deep Work</h4>
+<p class="text-sm">Cal Newport</p>
+<p class="mt-2 font-bold text-lightbrown">₹349</p>
+<button class="mt-4 w-full bg-brown text-white py-2 rounded-lg">Buy Now</button>
+</div>
+
+<!-- Think Like a Monk -->
+<div class="bg-card p-6 rounded-xl shadow"
+     data-isp-product
+     data-name="Think Like a Monk"
+     data-price="299"
+     data-category="Books"
+     data-description="Train your mind for peace and purpose every day."
+     data-keywords="mindset, peace, growth"
+     data-tags="new arrival">
+
+<div class="h-44 bg-[#e2d3c1] rounded-lg mb-4"></div>
+<h4 class="font-semibold text-lg">Think Like a Monk</h4>
+<p class="text-sm">Jay Shetty</p>
+<p class="mt-2 font-bold text-lightbrown">₹299</p>
+<button class="mt-4 w-full bg-brown text-white py-2 rounded-lg">Buy Now</button>
+</div>
+
+<!-- Psychology of Money -->
+<div class="bg-card p-6 rounded-xl shadow"
+     data-isp-product
+     data-name="Psychology of Money"
+     data-price="450"
+     data-category="Books"
+     data-description="Timeless lessons on wealth, greed, and happiness."
+     data-keywords="finance, money, investing"
+     data-tags="bestseller">
+
+<div class="h-44 bg-[#e2d3c1] rounded-lg mb-4"></div>
+<h4 class="font-semibold text-lg">Psychology of Money</h4>
+<p class="text-sm">Morgan Housel</p>
+<p class="mt-2 font-bold text-lightbrown">₹450</p>
+<button class="mt-4 w-full bg-brown text-white py-2 rounded-lg">Buy Now</button>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="py-24 px-6 bg-[#efe6da]">
+<div class="max-w-4xl mx-auto bg-card p-14 rounded-2xl text-center shadow-lg">
+
+<h3 class="text-3xl font-bold">Stay Updated</h3>
+
+<p class="mt-4 text-gray-600">
+Subscribe for new book launches and curated reading lists.
+</p>
+
+<input type="email"
+       data-isp-lead
+       placeholder="Enter your email"
+       class="border border-brown px-6 py-3 rounded-lg w-full mt-6">
+
+</div>
+</section>
+
+<footer class="bg-card py-10 text-center text-sm text-gray-500">
+© 2026 DemoBooks. All Rights Reserved.
+</footer>
+
+<!-- GLOBAL PRODUCT DATA FOR ISP -->
+<script>
+window.ISP_PRODUCTS = [
+{
+name: "Atomic Habits",
+price: "399",
+category: "Books",
+description: "A practical guide to building good habits and breaking bad ones.",
+keywords: ["habits","productivity","self-help"],
+tags: ["bestseller","trending"]
+},
+{
+name: "Deep Work",
+price: "349",
+category: "Books",
+description: "Rules for focused success in a distracted world.",
+keywords: ["focus","work","productivity"],
+tags: ["popular"]
+},
+{
+name: "Think Like a Monk",
+price: "299",
+
+category: "Books",
+description: "Train your mind for peace and purpose every day.",
+keywords: ["mindset","growth","peace"],
+tags: ["new arrival"]
+},
+{
+name: "Psychology of Money",
+price: "450",
+category: "Books",
+description: "Timeless lessons on wealth, greed, and happiness.",
+keywords: ["finance","money","investing"],
+tags: ["bestseller"]
+}
+];
+</script>
+<!-- ISP Chatbot Widget -->
+<script>
+    src="http://127.0.0.1:8000/static/widget.js"
+</script>
+            
+                        
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+</body>
+</html>

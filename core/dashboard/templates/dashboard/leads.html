@@ -1,0 +1,49 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block title %}Leads | ISP{% endblock %}
+
+{% block content %}
+<div class="p-6">
+
+  <h1 class="text-2xl font-bold text-white mb-6">Leads</h1>
+
+  {% if leads %}
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-slate-800 rounded-lg overflow-hidden">
+        <thead class="bg-slate-900">
+          <tr>
+            <th class="px-4 py-3 text-left text-slate-300 text-sm font-semibold">
+              Email
+            </th>
+            <th class="px-4 py-3 text-left text-slate-300 text-sm font-semibold">
+              Source
+            </th>
+            <th class="px-4 py-3 text-left text-slate-300 text-sm font-semibold">
+              Created At
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for lead in leads %}
+          <tr class="border-t border-slate-700 hover:bg-slate-700 transition">
+            <td class="px-4 py-3 text-slate-100">
+              {{ lead.email }}
+            </td>
+            <td class="px-4 py-3 text-slate-300 capitalize">
+              {{ lead.source|default:"—" }}
+            </td>
+            <td class="px-4 py-3 text-slate-400 text-sm">
+              {{ lead.created_at }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="text-slate-400">No leads yet.</p>
+  {% endif %}
+
+</div>
+{% endblock %}

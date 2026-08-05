@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GlowSkin | Natural Skincare</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="GlowSkin offers premium skincare products including serums, moisturizers and cleansers designed for radiant and healthy skin.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                blush: '#ffe4e6',
+                rose: '#f43f5e',
+                softrose: '#fb7185',
+                card: '#fff1f2'
+            }
+        }
+    }
+}
+</script>
+</head>
+
+<body class="bg-blush text-rose-900">
+
+<!-- HEADER -->
+<header class="bg-white shadow sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+<h1 class="text-3xl font-bold text-rose">GlowSkin</h1>
+
+<nav class="space-x-8 hidden md:block">
+<a href="#" class="hover:text-softrose">Home</a>
+<a href="#" class="hover:text-softrose">Products</a>
+<a href="#" class="hover:text-softrose">About</a>
+<a href="#" class="hover:text-softrose">Contact</a>
+</nav>
+
+<button class="bg-rose text-white px-5 py-2 rounded-lg hover:scale-105 transition">
+Shop Now
+</button>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="py-28 px-6 text-center">
+<div class="max-w-4xl mx-auto">
+
+<h2 class="text-5xl font-extrabold">
+Radiant Skin Starts Here ✨
+</h2>
+
+<p class="mt-8 text-lg">
+GlowSkin offers dermatologist-inspired skincare made with clean, natural ingredients.
+Our products help hydrate, brighten and rejuvenate your skin.
+</p>
+
+<button class="mt-10 bg-rose text-white px-10 py-4 rounded-full shadow hover:scale-105 transition">
+Explore Skincare
+</button>
+
+</div>
+</section>
+
+<!-- ABOUT SECTION FOR AI CONTEXT -->
+<section class="py-20 bg-white px-6" data-isp-section="about">
+<div class="max-w-4xl mx-auto text-center">
+
+<h3 class="text-3xl font-bold text-rose">About GlowSkin</h3>
+
+<p class="mt-6 text-lg leading-relaxed">
+GlowSkin is a modern skincare brand offering serums, moisturizers, and cleansers.
+Our products focus on hydration, glow enhancement, and gentle daily care.
+Prices range from ₹499 to ₹999.
+</p>
+
+</div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="py-24 px-6">
+<div class="max-w-7xl mx-auto">
+
+<h3 class="text-4xl font-bold text-center mb-14 text-rose">Featured Products</h3>
+
+<div class="grid md:grid-cols-3 gap-10">
+
+<!-- Vitamin C Serum -->
+<div class="bg-card p-6 rounded-xl shadow"
+     data-isp-product
+     data-name="Vitamin C Brightening Serum"
+     data-price="799"
+     data-category="Skincare"
+     data-description="Brightens skin and reduces dark spots with powerful Vitamin C."
+     data-keywords="serum, vitamin c, glow"
+     data-tags="bestseller,trending">
+
+<div class="h-44 bg-blush rounded-lg mb-4"></div>
+<h4 class="font-semibold text-lg">Vitamin C Brightening Serum</h4>
+<p class="mt-2 font-bold text-softrose">₹799</p>
+<button class="mt-4 w-full bg-rose text-white py-2 rounded-lg">Buy Now</button>
+</div>
+
+<!-- Hydrating Moisturizer -->
+<div class="bg-card p-6 rounded-xl shadow"
+     data-isp-product
+     data-name="Hydrating Daily Moisturizer"
+     data-price="649"
+     data-category="Skincare"
+     data-description="Deep hydration formula for soft and smooth skin."
+     data-keywords="moisturizer, hydration, cream"
+     data-tags="popular">
+
+<div class="h-44 bg-blush rounded-lg mb-4"></div>
+<h4 class="font-semibold text-lg">Hydrating Daily Moisturizer</h4>
+<p class="mt-2 font-bold text-softrose">₹649</p>
+<button class="mt-4 w-full bg-rose text-white py-2 rounded-lg">Buy Now</button>
+</div>
+
+<!-- Gentle Cleanser -->
+<div class="bg-card p-6 rounded-xl shadow"
+     data-isp-product
+     data-name="Gentle Foam Cleanser"
+     data-price="499"
+     data-category="Skincare"
+     data-description="Removes impurities without drying your skin."
+     data-keywords="cleanser, face wash, gentle"
+     data-tags="new arrival">
+
+<div class="h-44 bg-blush rounded-lg mb-4"></div>
+<h4 class="font-semibold text-lg">Gentle Foam Cleanser</h4>
+<p class="mt-2 font-bold text-softrose">₹499</p>
+<button class="mt-4 w-full bg-rose text-white py-2 rounded-lg">Buy Now</button>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="py-24 px-6 bg-white">
+<div class="max-w-4xl mx-auto bg-card p-14 rounded-2xl text-center shadow-lg">
+
+<h3 class="text-3xl font-bold text-rose">Get Skincare Tips</h3>
+
+<p class="mt-4 text-gray-600">
+Subscribe for skincare routines, product launches and exclusive offers.
+</p>
+
+<input type="email"
+       data-isp-lead
+       placeholder="Enter your email"
+       class="border border-rose px-6 py-3 rounded-lg w-full mt-6">
+
+</div>
+</section>
+
+<footer class="bg-white py-10 text-center text-sm text-gray-500">
+© 2026 GlowSkin. All Rights Reserved.
+</footer>
+
+<!-- GLOBAL PRODUCT DATA FOR ISP -->
+<script>
+window.ISP_PRODUCTS = [
+{
+name: "Vitamin C Brightening Serum",
+price: "799",
+category: "Skincare",
+description: "Brightens skin and reduces dark spots with powerful Vitamin C.",
+keywords: ["serum","vitamin c","glow"],
+tags: ["bestseller","trending"]
+},
+{
+name: "Hydrating Daily Moisturizer",
+price: "649",
+category: "Skincare",
+description: "Deep hydration formula for soft and smooth skin.",
+keywords: ["moisturizer","hydration","cream"],
+tags: ["popular"]
+},
+{
+name: "Gentle Foam Cleanser",
+price: "499",
+category: "Skincare",
+description: "Removes impurities without drying your skin.",
+keywords: ["cleanser","face wash","gentle"],
+tags: ["new arrival"]
+}
+];
+</script>
+<!-- ISP Chatbot Widget -->
+<!-- ISP Chatbot Widget -->
+<script
+    src="http://127.0.0.1:8000/static/widget.js"
+    data-widget-id="29c31ed1-37c6-4a08-845b-1df71dc22a13">
+</script>
+            
+            
+
+</body>
+</html>

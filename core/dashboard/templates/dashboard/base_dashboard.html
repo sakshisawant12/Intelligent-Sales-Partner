@@ -1,0 +1,182 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}Dashboard | ISP{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+/* ===== DARK THEME ===== */
+.dark-theme {
+    background-color: #0b1220;
+    color: #e5e7eb;
+}
+
+.dark-theme aside {
+    background-color: #0f172a;
+}
+
+.dark-theme .card {
+    background-color: #111827;
+}
+
+.dark-theme .border {
+    border-color: #1f2937;
+}
+
+/* ===== LIGHT THEME ===== */
+.light-theme {
+    background-color: #f9fafb;
+    color: #111827;
+}
+
+.light-theme aside {
+    background-color: #ffffff;
+}
+
+.light-theme .card {
+    background-color: #ffffff;
+}
+
+.light-theme .border {
+    border-color: #e5e7eb;
+}
+
+.light-theme a,
+.light-theme p,
+.light-theme h1,
+.light-theme h2,
+.light-theme h3 {
+    color: #111827 !important;
+}
+
+/* Orange stays orange */
+.bg-orange-500 { background-color: #f97316 !important; }
+.text-orange-400 { color: #f97316 !important; }
+</style>
+
+</head>
+
+<body class="{% if request.session.theme == 'light' %}light-theme{% else %}dark-theme{% endif %} min-h-screen flex">
+
+
+<aside class="w-64 bg-[#0f172a] border-r border-gray-800 flex flex-col">
+
+    <div class="p-6 text-xl font-bold text-white">
+        ISP Dashboard
+    </div>
+
+    <nav class="flex-1 px-4 space-y-2">
+
+        <a href="{% url 'dashboard:dashboard_home' %}" class="block px-4 py-2 rounded hover:bg-gray-800">
+            📊 Dashboard
+        </a>
+
+        <a href="{% url 'dashboard:dashboard_conversations' %}" class="block px-4 py-2 rounded hover:bg-gray-800">
+            💬 Conversations
+        </a>
+
+        <a href="{% url 'dashboard:dashboard_email_marketing' %}" class="block px-4 py-2 rounded hover:bg-gray-800">
+            📧 Email Marketing
+        </a>
+
+        {% if current_website %}
+        <a href="{% url 'dashboard:website_leads'   current_website.id %}"
+            class="block px-4 py-2 rounded hover:bg-gray-800">
+            🧲 Leads
+        </a>
+        {% else %}
+        <a href="{% url 'dashboard:dashboard_leads' %}"
+            class="block px-4 py-2 rounded hover:bg-gray-800">
+            🧲 Leads
+        </a>
+        {% endif %}
+
+        <a href="{% url 'dashboard:dashboard_settings' %}" class="block px-4 py-2 rounded hover:bg-gray-800">
+            ⚙️ Settings
+        </a>
+
+        <div class="mt-2">
+            <div class="flex items-center justify-between px-4 py-2 rounded hover:bg-gray-800">
+                <a href="{% url 'dashboard:dashboard_domains' %}" class="flex items-center gap-2">
+                    🌐 Domains
+                </a>
+
+                <button onclick="openDomainModal()"
+                        class="text-orange-500 text-xl font-bold hover:scale-110 transition">
+                    +
+                </button>
+            </div>
+
+            <div class="ml-10 mt-2 space-y-1 text-sm text-gray-300">
+                {% if websites %}
+                    {% for site in websites %}
+                        <a href="{% url 'dashboard:set_current_website' site.id %}"
+                        class="flex items-center gap-2 hover:text-orange-400">
+                        🌍 {{ site.domain }}
+                        </a>
+
+
+                    {% endfor %}
+                {% else %}
+                    <div class="text-gray-500 text-xs">No domains added</div>
+                {% endif %}
+            </div>
+        </div>
+
+    </nav>
+
+    <div class="p-4 border-t border-gray-800">
+        <a href="/" class="block text-center text-sm text-gray-400 hover:text-white">
+            ← Back to Home
+        </a>
+    </div>
+</aside>
+
+<main class="flex-1 p-8">
+    {% block content %}{% endblock %}
+</main>
+
+<div id="domainModal"
+     class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+
+    <div class="bg-[#0f172a] p-6 rounded-lg w-96">
+        <h2 class="text-lg font-semibold mb-4">Add your business domain</h2>
+
+        <form method="POST" action="{% url 'dashboard:dashboard_domains' %}">
+            {% csrf_token %}
+
+            <input
+                type="text"
+                name="domain"
+                placeholder="example.com"
+                class="w-full p-2 rounded bg-[#020617] border border-gray-700 text-white mb-4"
+                required
+            />
+
+            <div class="flex justify-end gap-2">
+                <button type="button"
+                        onclick="closeDomainModal()"
+                        class="px-4 py-2 rounded bg-gray-700">
+                    Cancel
+                </button>
+
+                <button class="px-4 py-2 rounded bg-orange-500">
+                    Add Domain
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function openDomainModal() {
+    document.getElementById("domainModal").classList.remove("hidden");
+}
+function closeDomainModal() {
+    document.getElementById("domainModal").classList.add("hidden");
+}
+</script>
+
+</body>
+</html>

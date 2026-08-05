@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="flex justify-center py-20">
+<div class="bg-slate-800 p-10 rounded-xl w-[400px]">
+
+<h2 class="text-3xl font-bold mb-2">Welcome Back</h2>
+<p class="text-slate-400 mb-6">
+Login to manage your AI sales assistant.
+</p>
+
+{% if error %}
+<p class="text-red-400 mb-4">{{ error }}</p>
+{% endif %}
+
+<form method="post">
+{% csrf_token %}
+
+<input type="email" name="email" required
+class="w-full p-3 mb-4 rounded bg-slate-700"
+placeholder="Email">
+
+<input type="password" name="password" required
+class="w-full p-3 mb-6 rounded bg-slate-700"
+placeholder="Password">
+
+<button class="bg-orange-500 w-full py-3 rounded-lg">
+Login
+</button>
+<p class="text-center text-gray-400 mt-4">
+    Don’t have an account?
+    <a href="{% url 'register' %}" class="text-orange-400 hover:underline">
+        Create one
+    </a>
+</p>
+
+</form>
+
+<p class="text-center text-orange-400 cursor-pointer "
+   onclick="openForgotModal()">
+    Forgot password?
+</p>
+<div id="forgotModal"
+     class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+
+    <div class="bg-[#0f172a] p-6 rounded-lg w-96">
+        <h2 class="text-lg font-semibold mb-4 text-white">
+            Reset your password
+        </h2>
+
+        <form id="forgotForm">
+            {% csrf_token %}
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your registered email"
+                required
+                class="w-full p-2 rounded bg-[#020617] border border-gray-700 text-white mb-4"
+            >
+
+            <div class="flex justify-end gap-2">
+                <button type="button"
+                        onclick="closeForgotModal()"
+                        class="px-4 py-2 text-gray-400">
+                    Cancel
+                </button>
+
+                <button type="submit"
+                        class="px-4 py-2 bg-orange-500 rounded text-white">
+                    Send Reset Link
+                </button>
+            </div>
+        </form>
+
+        <p id="forgotMsg" class="text-sm text-green-400 mt-3 hidden">
+            If the email exists, a reset link has been sent.
+        </p>
+    </div>
+</div>
+
+</div>
+</div>
+<script>
+function openForgotModal() {
+    document.getElementById("forgotModal").classList.remove("hidden");
+}
+
+function closeForgotModal() {
+    document.getElementById("forgotModal").classList.add("hidden");
+}
+
+document.getElementById("forgotForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    fetch("{% url 'password_reset' %}", {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams(new FormData(this))
+    })
+    .then(() => {
+        document.getElementById("forgotMsg").classList.remove("hidden");
+        setTimeout(closeForgotModal, 2500);
+    });
+});
+</script>
+
+{% endblock %}

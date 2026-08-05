@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Contact | Intelligent Sales Partner{% endblock %}
+
+{% block content %}
+<section class="px-10 py-20 flex justify-center">
+
+<div class="bg-slate-800 p-12 rounded-xl w-full max-w-2xl">
+
+<h2 class="text-4xl font-bold mb-4">
+    Let’s Build Your AI Sales Assistant
+</h2>
+
+<p class="text-slate-300 mb-10">
+Tell us about your business and we’ll help you deploy
+a personalized AI chatbot on your website.
+</p>
+
+<form method="post" class="space-y-4">
+  {% csrf_token %}
+
+  <input
+    type="text"
+    name="name"
+    placeholder="Your Name"
+    required
+    class="w-full px-4 py-2 rounded bg-slate-800 text-white"
+  >
+
+  <input
+    type="email"
+    name="email"
+    placeholder="Your Email"
+    required
+    class="w-full px-4 py-2 rounded bg-slate-800 text-white"
+  >
+
+  <textarea
+    name="message"
+    placeholder="Describe your requirement"
+    rows="4"
+    required
+    class="w-full px-4 py-2 rounded bg-slate-800 text-white"
+  ></textarea>
+
+  <button
+    type="submit"
+    class="bg-orange-500 px-6 py-2 rounded text-white font-semibold"
+  >
+    Send Message
+  </button>
+</form>
+
+</div>
+</section>
+{% endblock %}

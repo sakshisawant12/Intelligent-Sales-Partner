@@ -1,0 +1,58 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block content %}
+
+<h1 class="text-2xl font-bold text-white mb-6">Email Marketing</h1>
+
+<form method="post" class="space-y-4 mb-10">
+  {% csrf_token %}
+
+  <input
+    type="text"
+    name="subject"
+    placeholder="Email subject"
+    required
+    class="w-full p-3 rounded bg-slate-900 text-white border border-slate-700"
+  >
+
+  <textarea
+    name="content"
+    placeholder="Write your email content..."
+    required
+    rows="6"
+    class="w-full p-3 rounded bg-slate-900 text-white border border-slate-700"
+  ></textarea>
+
+  <button
+    type="submit"
+    class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded"
+  >
+    Send Campaign
+  </button>
+</form>
+
+<h2 class="text-xl font-semibold text-white mb-4">
+  Sent Campaigns
+</h2>
+
+{% if campaigns %}
+  <div class="space-y-4">
+    {% for campaign in campaigns %}
+      <div class="bg-slate-800 p-4 rounded-lg">
+        <h3 class="font-semibold text-white">
+          {{ campaign.subject }}
+        </h3>
+        <p class="text-slate-300 mt-2">
+          {{ campaign.content|truncatechars:150 }}
+        </p>
+        <p class="text-slate-400 text-sm mt-2">
+          {{ campaign.created_at }}
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="text-slate-400">No campaigns sent yet.</p>
+{% endif %}
+
+{% endblock %}

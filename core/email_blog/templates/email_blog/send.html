@@ -1,0 +1,7 @@
+<h2>Email Blog</h2>
+<form method="post">
+    {% csrf_token %}
+    <input name="subject" placeholder="Subject">
+    <textarea name="content"></textarea>
+    <button>Send Email</button>
+</form>
